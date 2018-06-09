@@ -42,8 +42,8 @@ def handle_message(event):
 	temp = ["寶貝你最漂亮了", "you are so beautiful", "妳是天使", "你的腿兒好修長呀", "來來來~我帶妳出去玩", "我不會再睡啦><", "想你抱抱呀", "你最可愛了", "我愛妳呀"]
     str = ""
 	for t in temp:
-		str = str + t + '\n'
-	message = TextSendMessage(text="FOSS 說: %s" % str)
+		str = str + t
+	message = TextSendMessage(text="魚魚說: %s" % event.message.text + str)
     line_bot_api.reply_message(
         event.reply_token,
         message)
