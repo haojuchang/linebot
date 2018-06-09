@@ -43,7 +43,7 @@ def handle_message(event):
     str = ""
 	for t in temp:
 		str = str + t
-	message = TextSendMessage(text="魚魚說: %s" % event.message.text + str)
+	message = TextSendMessage(text="魚魚說: %s" % event.message.text)
     line_bot_api.reply_message(
         event.reply_token,
         message)
