@@ -1,5 +1,5 @@
 import sys
-sys.path.append("./assest")
+sys.path.append("./lib")
 import youtube
 
 
