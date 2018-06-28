@@ -1,3 +1,4 @@
+# encoding: utf-8
 from flask import Flask, request, abort
 
 from linebot import (
@@ -7,19 +8,14 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, ImageSendMessage
+    MessageEvent, TextMessage, TextSendMessage,
 )
-
-import lib/youtube
 
 app = Flask(__name__)
 
-# Channel Access Token
-line_bot_api = LineBotApi('kt6IJ/UnjF9vKp3YLpceIGPn5gPzPismP46p0Uk2qM0uONry/QRMPrIQj+ACwuFjGr1tMJ9+NBBHvPZOuJXQUAl8HAYs9q78JH03aqx5JatG+r59K7jC2CUAh/+Slyy7PVdvHlv/HI60dUmazQsajwdB04t89/1O/w1cDnyilFU=')
-# Channel Secret
-handler = WebhookHandler('e28040c3dd87d1c2623177ead74596d2')
+line_bot_api = LineBotApi('9nVCgPc4/2pt8oqecL9v/vyInP7cOWTMYwZT4AB//6hFi4bWXkS92287D4r2kTBONNogtObgJlgAhU9p5XW8ZCLYh/R7YVjFx6Jy+pLMisakzNAZnAfmJYT/lLcv0EJ3nh8X0VVKmg0gq+4zZMlKUwdB04t89/1O/w1cDnyilFU=') #Your Channel Access Token
+handler = WebhookHandler('6cf6e13114e9f67a23e836fdecfab1c6') #Your Channel Secret
 
-# 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
@@ -37,21 +33,15 @@ def callback():
 
     return 'OK'
 
-<<<<<<< HEAD
 @handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
-    text = event.message.text + 'fosss'#message from user
-=======
->>>>>>> parent of 6dc0720... linebot 初版模板
+def handle_text_message(event):
+    text = event.message.text + 'foss'#message from user
 
-@handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
-    message = TextSendMessage(text="FOSS 說: %s" event.message.text)
     line_bot_api.reply_message(
         event.reply_token,
-        message)
+        TextSendMessage(text=text)) #reply the same message from user
+    
 
 import os
 if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0',port=os.environ['PORT'])
