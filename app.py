@@ -11,6 +11,8 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
 
+import lib/youtube
+
 app = Flask(__name__)
 
 line_bot_api = LineBotApi('9nVCgPc4/2pt8oqecL9v/vyInP7cOWTMYwZT4AB//6hFi4bWXkS92287D4r2kTBONNogtObgJlgAhU9p5XW8ZCLYh/R7YVjFx6Jy+pLMisakzNAZnAfmJYT/lLcv0EJ3nh8X0VVKmg0gq+4zZMlKUwdB04t89/1O/w1cDnyilFU=') #Your Channel Access Token
@@ -34,13 +36,8 @@ def callback():
     return 'OK'
 
 @handler.add(MessageEvent, message=TextMessage)
-<<<<<<< HEAD
 def handle_message(event):
     text = event.message.text + 'fosss'#message from user
-=======
-def handle_text_message(event):
-    text = event.message.text + 'foss'#message from user
->>>>>>> parent of 23145c3... 更改環境
 
     line_bot_api.reply_message(
         event.reply_token,
